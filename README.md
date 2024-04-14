@@ -1,6 +1,9 @@
 
 # together-go
 
+[![Go Test](https://github.com/maxnystrom/together-go/actions/workflows/go.yml/badge.svg)](https://github.com/maxnystrom/together-go/actions/workflows/go.yml)
+[![codecov](https://codecov.io/gh/maxnystrom/together-go/graph/badge.svg?token=BN5HQVNYSP)](https://codecov.io/gh/maxnystrom/together-go)
+
 > **Note**: This library is a proof-of-concept and is not yet feature-complete nor should be considered production ready.
 
 A Go library for interacting with
@@ -40,7 +43,7 @@ func main() {
   api, err := together.New(os.Getenv("TOGETHER_API_KEY"))
   if err != nil {
     log.Fatal(err)
-}
+  }
 
   // Most API calls require a Context
   ctx := context.Background()
