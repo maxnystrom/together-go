@@ -17,13 +17,14 @@ const (
 	defaultScheme   = "https"
 	defaultHostname = "api.together.xyz"
 	defaultBasePath = "/"
+	defaultRetries  = 5
 	userAgent       = "together-go"
 
 	errEmptyAPIToken = "invalid credentials: API Token must not be empty" //nolint:gosec,unused
 )
 
 var (
-	Version string = "v1"
+	Version string = "v1" // This corresponds to the version of the API and is used in the URL path
 )
 
 type API struct {
@@ -43,7 +44,7 @@ func New(key string) (*API, error) {
 	api := &API{}
 	api.BaseURL = fmt.Sprintf("%s://%s", defaultScheme, defaultHostname)
 	api.Client = retryablehttp.NewClient()
-	api.Client.RetryMax = 5
+	api.Client.RetryMax = defaultRetries
 	api.Debug = false
 	api.APIKey = key
 	api.UserAgent = userAgent + "/" + Version
