@@ -8,6 +8,7 @@ import (
 	"testing"
 )
 
+// Test creating a new API object/client with a valid API key.
 func TestNew(t *testing.T) {
 	result, _ := New("hunter2")
 	if result.APIKey != "hunter2" {
@@ -24,6 +25,7 @@ func TestNew(t *testing.T) {
 
 }
 
+// Test copying headers from one header map to another.
 func TestCopyHeader(t *testing.T) {
 	a := make(http.Header)
 	a.Set("test", "test")
@@ -40,6 +42,7 @@ func TestCopyHeader(t *testing.T) {
 	}
 }
 
+// Test making a HTTP request.
 func TestRequest(t *testing.T) {
 	req, _ := New("hunter2")
 	req.Client.RetryMax = 1

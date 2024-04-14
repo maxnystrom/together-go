@@ -49,7 +49,7 @@ func main() {
   ctx := context.Background()
   
   // List running instances
-  r, err := api.ListRunningInstances(context)
+  r, err := api.ListRunningInstances(ctx)
   if err != nil {
     log.Fatal(err)
   }
