@@ -1,6 +1,7 @@
 package together
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -89,8 +90,12 @@ func (api *API) ChatCompletions(ctx context.Context, model string, messages []Me
 	request.Model = model
 
 	uri := defaultBasePath + Version + "/chat/completions"
+	reqBody, err := json.Marshal(request)
+	if err != nil {
+		return ChatCompletionsResponse{}, err
+	}
 
-	res, err := api.request(ctx, "POST", uri, nil, nil)
+	res, err := api.request(ctx, "POST", uri, bytes.NewBuffer(reqBody), nil)
 	if err != nil {
 		return ChatCompletionsResponse{}, err
 	}
