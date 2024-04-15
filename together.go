@@ -9,6 +9,8 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"regexp"
+	"strconv"
+	"time"
 
 	"github.com/hashicorp/go-retryablehttp"
 )
@@ -47,7 +49,7 @@ func New(key string) (*API, error) {
 	api.Client.RetryMax = defaultRetries
 	api.Debug = false
 	api.APIKey = key
-	api.UserAgent = userAgent + "/" + Version
+	api.UserAgent = userAgent + "/" + Version + " (" + strconv.FormatInt(time.Now().UnixNano(), 36) + ")"
 
 	return api, nil
 }
